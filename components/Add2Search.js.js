@@ -5,7 +5,7 @@ const Add2Search = ({ onValueChange, navigation, image }) => {
 
   return (<>
     <View style={styles.searchContainer}>
-      <Image source={require('../assets/google_logo.png')} style={styles.size(40)} />
+      <Image source={require('../assets/google_logo.jpg')} style={styles.size(40)} />
 
       <Image style={{ borderRadius: 8, height: 35, width: 40 }} source={{ uri: image }} />
       <TextInput
@@ -21,7 +21,7 @@ const Add2Search = ({ onValueChange, navigation, image }) => {
       <View style={styles.iconsContainer}>
 
         <TouchableOpacity onPress={() => navigation.navigate('VoiceSearch')} style={styles.iconButton}>
-          <Image source={require('../assets/mic.png')} style={styles.size(28)} />
+          <Image source={require('../assets/mic.jpg')} style={styles.size(28)} />
 
         </TouchableOpacity>
       </View>
