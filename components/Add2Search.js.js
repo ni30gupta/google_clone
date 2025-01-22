@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const SearchTextBar = ({ onValueChange, navigation }) => {
-  console.log('navigation', navigation)
-  const [searchText, setSearchText] = useState('');
+const Add2Search = ({ onValueChange, navigation, image }) => {
 
   return (<>
     <View style={styles.searchContainer}>
       <Image source={require('../assets/google_logo.png')} style={styles.size(40)} />
 
+      <Image style={{ borderRadius: 8, height: 35, width: 40 }} source={{ uri: image }} />
       <TextInput
         style={styles.input}
-        placeholder="Search..."
+        placeholder="Add to your search"
         placeholderTextColor="#9AA0A6"
-        //   value={searchText}
         onChangeText={(val) => onValueChange(val)}
         selectionColor="#8AB4F8"
         autoFocus
@@ -22,16 +19,14 @@ const SearchTextBar = ({ onValueChange, navigation }) => {
 
       {/* Right Icons */}
       <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={()=> navigation.navigate('VoiceSearch')} style={styles.iconButton}>
+
+        <TouchableOpacity onPress={() => navigation.navigate('VoiceSearch')} style={styles.iconButton}>
           <Image source={require('../assets/mic.png')} style={styles.size(28)} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ImageSearch')} style={styles.iconButton}>
-          <Image source={require('../assets/Google_Lens_Icon.svg.png')} style={styles.size(25)} />
+
         </TouchableOpacity>
       </View>
     </View>
 
-    <View style={styles.devider} />
   </>
   );
 };
@@ -52,12 +47,13 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: 'row',
-    backgroundColor: '#1f1f1f',
+    backgroundColor: '#2b2b2b',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     height: 46,
-    marginTop: 10
-
+    marginTop: 10,
+    marginHorizontal: 20,
+    borderRadius: 50
   },
   input: {
     flex: 1,
@@ -85,4 +81,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SearchTextBar;
+export default Add2Search;

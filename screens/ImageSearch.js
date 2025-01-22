@@ -11,23 +11,24 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Icon as Icon1} from 'react-native-elements'
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import ResizableDraggableRect from '../components/ResizableDraggableComp';
 import { useCallback } from 'react';
 import { debounce } from 'lodash';
+import Add2Search from '../components/Add2Search.js';
 
 const ImageSearch = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
-  const [imageHandler , setImageHandler ] = useState(false)
-  const [loading , setLoading ] = useState(false)
+  const [imageHandler, setImageHandler] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const url = 'https://picsum.photos/150'
 
 
   const requestCameraPermission = async () => {
     if (Platform.OS === 'android') {
-      console.log('first')
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -51,7 +52,7 @@ const ImageSearch = ({ navigation }) => {
   useEffect(() => {
     console.log('selectedImage', selectedImage)
     setImageHandler(true)
-    if(!selectedImage){
+    if (!selectedImage) {
       setSearchResults([])
     }
   }, [selectedImage])
@@ -128,20 +129,15 @@ const ImageSearch = ({ navigation }) => {
   const setSimilarResults = async (rect) => {
     // setSearchResults([])
     setLoading(true)
-    console.log('first', rect)
     const img1 = await fetch(url)
-    console.log(img1.url)
-   
+
     const img2 = await fetch(url)
-    console.log(img2.url)
-   
+
     const img3 = await fetch(url)
-    console.log(img3.url)
-   
+
     const img4 = await fetch(url)
-    console.log(img4.url)
-   
-   
+
+
 
     setSearchResults([
       { id: 1, title: 'Similar Image 1', url: img1.url },
@@ -166,15 +162,21 @@ const ImageSearch = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back" size={24} color="#fff" />
+          <Icon name="arrow-back" size={20} color="#fff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Google Lens</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="info-outline" style={{marginHorizontal:10}}  type ='feather' size={20} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon1 type='feather' name="more-vertical" size={20} color="#fff" />
+        </TouchableOpacity>
       </View>
 
       <ScrollView style={styles.content}>
         {selectedImage ? (
           <View style={styles.selectedImageContainer}>
-            { imageHandler && <ResizableDraggableRect image={selectedImage} onCropperMove={onCropperMove}/> }
+            {imageHandler && <ResizableDraggableRect image={selectedImage} onCropperMove={onCropperMove} />}
             <TouchableOpacity
               style={styles.minimizeButton}
               onPress={() => setSelectedImage(null)}
@@ -188,7 +190,7 @@ const ImageSearch = ({ navigation }) => {
               <Icon name="photo-library" size={48} color="#4285F4" />
               <Text style={styles.uploadText}>Choose from gallery</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.uploadButton} onPress={takePhoto}>
               <Icon name="camera-alt" size={48} color="#4285F4" />
               <Text style={styles.uploadText}>Take a photo</Text>
@@ -196,20 +198,25 @@ const ImageSearch = ({ navigation }) => {
           </View>
         )}
 
-        {(searchResults.length && !loading  ) > 0 &&(
-        <View style={styles.resultsContainer}>
-            <View style={styles.resultGrid}>
-              {searchResults.map((result) => (
-                <TouchableOpacity key={result.id} style={styles.resultItem}>
-                  <Image
-                    source={{ uri: result.url }}
-                    style={styles.resultImage}
-                  />
-                  <Text style={styles.resultTitle}>{result.title}</Text>
-                </TouchableOpacity>
-              ))}
+        {(searchResults.length && !loading) > 0 && (
+          <View style={{backgroundColor:'#1b1b1b', borderTopRightRadius:30, borderTopLeftRadius:30}}>
+           <View style={{marginVertical:10, backgroundColor:'grey', height:4, width:'10%', alignSelf:'center'}}></View>
+            <Add2Search navigation={navigation} image={selectedImage} />
+            <View style={styles.resultsContainer}>
+              <View style={styles.resultGrid}>
+                {searchResults.map((result) => (
+                  <TouchableOpacity key={result.id} style={styles.resultItem}>
+                    <Image
+                      source={{ uri: result.url }}
+                      style={styles.resultImage}
+                    />
+                    <Text style={styles.resultTitle}>{result.title}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
             </View>
           </View>
+
         )}
         {loading && <Text style={styles.uploadText}>Loading....</Text>}
       </ScrollView>
@@ -220,37 +227,37 @@ const ImageSearch = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    backgroundColor:'#1f1f1f'
+    backgroundColor: '#1f1f1f'
 
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#576250',
+    backgroundColor:'#000'
   },
   headerTitle: {
     marginLeft: 'auto',
-    marginRight:'auto',
+    marginRight: 'auto',
     fontSize: 20,
 
     fontWeight: '500',
-    color:'#fff',
+    color: '#fff',
   },
   content: {
     flex: 1,
+    backgroundColor:'#000'
   },
   uploadContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 16,
-    alignItems:'center',
-    flex:1,
+    alignItems: 'center',
+    flex: 1,
   },
   selectedImageContainer: {
-    width: '100%',
+    width: '80%',
+    alignSelf:'center',
     height: 500,
     backgroundColor: '#000',
     position: 'relative',
@@ -283,7 +290,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   resultsContainer: {
-    paddingVertical:8,
+    paddingVertical: 8,
     paddingHorizontal: 16,
   },
   resultsTitle: {

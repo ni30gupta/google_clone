@@ -8,6 +8,7 @@ import SearchResults from './screens/SearchResults';
 import ImageSearch from './screens/ImageSearch';
 import { LogBox, StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import VoiceSearch from './screens/VoiceSearch';
 
 
 
@@ -38,6 +39,7 @@ const App = () => {
             <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="SearchResults" component={SearchResults} />
             <Stack.Screen name="ImageSearch" component={ImageSearch} />
+            <Stack.Screen name="VoiceSearch" component={VoiceSearch} />
           </Stack.Navigator>
         </SafeAreaProvider>
       </NavigationContainer>

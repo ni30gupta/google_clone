@@ -16,7 +16,8 @@ const SearchBar = ({navigation}) => {
   }
   
   const voiceSearch =()=> {
-    console.log('voice')
+    navigation.navigate('VoiceSearch')
+
   }
   
   const cameraSearch =()=> {

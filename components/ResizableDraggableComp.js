@@ -55,7 +55,8 @@ const ResizableDraggableRect = (props) => {
 
         // Restrict y movement
         if (_y < 0) _y = 0;
-        if (_y + rect.height > windowHeight) _y = windowHeight - rect.height;
+        // selctedImage height 500, header 36
+        if (_y > (500-rect.height)) _y =500 - rect.height ;
 
         setRect(prevRect => ({
           ...prevRect,
