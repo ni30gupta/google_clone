@@ -51,7 +51,7 @@ const HomePage = ({ navigation }) => {
         <View style={styles.searchPill}>
           <View style={styles.pill}>
             <Image
-              source={require('../assets/google_logo.png')}
+              source={require('../assets/google_logo.jpg')}
               style={styles.smallLogo}
             />
             <Text style={styles.searchText}>Search</Text>
@@ -67,7 +67,7 @@ const HomePage = ({ navigation }) => {
 
       <View style={styles.mainContent}>
         <Image
-          source={require('../assets/googlelogo_light.png')}
+          source={require('../assets/googlelogo_light.jpg')}
           style={styles.logo}
         />
 
