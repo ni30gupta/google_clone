@@ -8,7 +8,7 @@ const SearchTextBar = ({ onValueChange, navigation }) => {
 
   return (<>
     <View style={styles.searchContainer}>
-      <Image source={require('../assets/google_logo.png')} style={styles.size(40)} />
+      <Image source={require('../assets/google_logo.jpg')} style={styles.size(40)} />
 
       <TextInput
         style={styles.input}
@@ -23,10 +23,10 @@ const SearchTextBar = ({ onValueChange, navigation }) => {
       {/* Right Icons */}
       <View style={styles.iconsContainer}>
         <TouchableOpacity onPress={()=> navigation.navigate('VoiceSearch')} style={styles.iconButton}>
-          <Image source={require('../assets/mic.png')} style={styles.size(28)} />
+          <Image source={require('../assets/mic.jpg')} style={styles.size(28)} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('ImageSearch')} style={styles.iconButton}>
-          <Image source={require('../assets/Google_Lens_Icon.svg.png')} style={styles.size(25)} />
+          <Image source={require('../assets/Google_Lens_Icon.svg.jpg')} style={styles.size(25)} />
         </TouchableOpacity>
       </View>
     </View>
